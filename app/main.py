@@ -15,12 +15,10 @@ def index():
     df = pd.read_json(json_df, orient='split')
     ownership = df[['Company', 'Ownership']
                    ].dropna().head(n=20).values.tolist()
-    positives = df[(df['Value_x'] > change_threshold) & (df['Value_y'] > change_threshold)].sort_values(
+    positives = df.sort_values(
         'Change', ascending=False)[['Company', 'Change']].dropna().head(n=20).values.tolist()
-    negatives = df[(df['Value_x'] > change_threshold) & (df['Value_y'] > change_threshold)].sort_values(
+    negatives = df.sort_values(
         'Change')[['Company', 'Change']].dropna().head(n=20).values.tolist()
-    # (possible filter for movement)
-    # df[(df['Value_x'] > 100000) & (df['Value_y'] > 100000)]
 
     return render_template('index.html',
                            ownership=ownership,
