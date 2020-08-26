@@ -8,6 +8,7 @@ from app.config import fund_dict
 
 
 def forms_scraper(fund_link):
+    """Takes the SEC fund link to return the 2 most recent filing URLS"""
     r = requests.get(fund_link)
     soup = BeautifulSoup(r.content, 'html.parser')
     filing_links = []
@@ -32,6 +33,7 @@ def forms_scraper(fund_link):
 
 
 def shares_scraper(form_link):
+    """Takes a filing link and appends all holdings to a list"""
     r = requests.get(form_link)
     soup = BeautifulSoup(r.content, 'html.parser')
     table = soup.find_all('table')[3]
@@ -56,6 +58,7 @@ def shares_scraper(form_link):
 
 
 def pandas_analysis(fund_dict):
+    """Takes the fund dict and gets the filings URLS from forms_scraper, then extends two aggregate lists for the current and previous holdings across all funds before analysis in pandas and export to json txt"""
     list_current = []
     list_previous = []
     for k, v in fund_dict.items():

@@ -10,6 +10,7 @@ app = Flask(__name__)
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
+    """Creates the main page via Flask, reads tables by creating three lists from the json loaded dataframe and loads colors gradients from config"""
     with open('json_df.txt', 'r') as f:
         json_df = json.load(f)
     df = pd.read_json(json_df, orient='split')
