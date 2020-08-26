@@ -35,8 +35,8 @@ crontab -e
 * * 7 * * /usr/bin/python /home/ubuntu/stockFries/app/scraper.py > /var/log/cron.log 2>&1
 ```
 
-8. Spinup docker instance
+8. Spinup docker instance (run as is to make sure there are no errors thrown. In general you can append the -d flag to run silently in the background)
 ```
-sudo docker-compose -d up
+sudo docker-compose up
 ```
 
