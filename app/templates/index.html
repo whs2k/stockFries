@@ -1,0 +1,100 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="row">
+<div class="col-md-6 mx-auto">
+<!--<div class="card">-->
+<!--  <div class="card-body">-->
+      <h3 class="card-title">Information from the world’s best investors
+</h3>
+    <p class="card-text">Sure, investing in a diversified fund of funds is the <a href="https://obliviousinvestor.com/8-sample-and-simple-portfolios/">best long term strategy</a>, but isn’t it more fun to pick NVIDIA than the Vanguard Small-Cap Value Index (VISVX, VBR)?
+
+Got a new long or short idea? Find out if most expensive money managers in the world are thinking the same</p>
+  </div>
+<!--</div>-->
+<!--</div>-->
+</div>
+<br>
+<br>
+
+<div class="row mx-auto w-75">
+<div class="col-md-4">
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Heaviest</h5>
+<table class="table table-hover table-condensed">
+   <thead>
+   <tr>
+       <th> </th>
+       <th>Ownership</th>
+   </tr>
+   </thead>
+    <tbody>
+    {% for i in ownership %}
+    <tr>
+
+        <td> {{ i[0] }}</td>
+        {% set value = i[1]|string %}
+        <td style="background-color: {{ ownership_colors[loop.index] }}"> {{ value[:4] }}% </td>
+   </tr>
+{% endfor %}
+    </tbody>
+
+</table>
+  </div>
+</div>
+</div>
+    <div class="col-md-4">
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Hottest</h5>
+<table class="table table-hover table-condensed">
+   <thead>
+   <tr>
+       <th> </th>
+       <th>Positive Change</th>
+   </tr>
+   </thead>
+    <tbody>
+    {% for i in positives %}
+    <tr>
+
+        <td> {{ i[0] }} </td>
+        <td style="background-color: {{ positives_colors[loop.index] }}"> +{{ i[1] }}% </td>
+   </tr>
+{% endfor %}
+    </tbody>
+
+</table>
+  </div>
+</div>
+    </div>
+        <div class="col-md-4">
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Coldest</h5>
+<table class="table table-hover table-condensed">
+   <thead>
+   <tr>
+       <th> </th>
+       <th>Negative Change</th>
+   </tr>
+   </thead>
+    <tbody>
+    {% for i in negatives %}
+    <tr>
+
+        <td> {{ i[0] }} </td>
+        <td style="background-color: {{ negatives_colors[loop.index] }}"> {{ i[1] }}% </td>
+   </tr>
+{% endfor %}
+    </tbody>
+
+</table>
+  </div>
+</div>
+</div>
+    </div>
+<br><br><br>
+{% endblock %}
