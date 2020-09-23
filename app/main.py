@@ -29,6 +29,9 @@ def index():
                            positives_colors=positives_colors,
                            negatives_colors=negatives_colors)
 
+@app.route("/blog")
+def blog():
+    return render_template('blog.html')
 
 @app.route("/about")
 def about():

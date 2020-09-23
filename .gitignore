@@ -1,5 +1,6 @@
 # Created by .ignore support plugin (hsz.mobi)
 ### Python template
+*.pem
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -141,3 +142,8 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
+.DS_Store
+app/.DS_Store
+app/templates/index_test.html
+app/templates/blog_test.html
+app/.DS_Store
