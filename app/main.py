@@ -3,7 +3,7 @@ from flask import Flask, render_template
 import pandas as pd
 import json
 # internal
-from app.config import change_threshold, ownership_colors, positives_colors, negatives_colors
+from config import change_threshold, ownership_colors, positives_colors, negatives_colors
 
 app = Flask(__name__)
 
