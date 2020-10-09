@@ -38,7 +38,7 @@ def about():
     return render_template('about.html')
 
 @app.route("/sitemap.xml")
-def about():
+def sitemap():
     return render_template('sitemap.xml')
 
 
