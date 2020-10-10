@@ -33,6 +33,14 @@ def index():
 def blog():
     return render_template('blog.html')
 
+@app.route("/blog/1_gambling")
+def blog1():
+    return render_template('BlogPost_1_Gambling.html')
+
+@app.route("/blog/2_basics")
+def blog2():
+    return render_template('BlogPost_2_Basics.html')
+
 @app.route("/about")
 def about():
     return render_template('about.html')
