@@ -9,18 +9,28 @@
 
 <url>
   <loc>http://www.stockfries.com/</loc>
-  <lastmod>2020-10-09T01:13:41+00:00</lastmod>
+  <lastmod>2020-10-10T04:17:00+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
   <loc>http://www.stockfries.com/blog</loc>
-  <lastmod>2020-10-09T01:13:41+00:00</lastmod>
+  <lastmod>2020-10-10T04:17:00+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>http://www.stockfries.com/about</loc>
-  <lastmod>2020-10-09T01:13:41+00:00</lastmod>
+  <lastmod>2020-10-10T04:17:00+00:00</lastmod>
   <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://www.stockfries.com/blog/2_basics</loc>
+  <lastmod>2020-10-10T04:17:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://www.stockfries.com/blog/1_gambling</loc>
+  <lastmod>2020-10-10T04:17:00+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 
 
