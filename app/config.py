@@ -1,3 +1,5 @@
+blog_1_url = "http://www.stockfries.com/blog/1_gambling"
+blog_2_url = "http://www.stockfries.com/blog/2_basics"
 
 
 change_threshold = 50000
