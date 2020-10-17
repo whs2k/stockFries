@@ -4,7 +4,8 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import json
 # internal
-from app.config import fund_dict
+from config import fund_dict
+import os
 
 
 def forms_scraper(fund_link):
@@ -51,7 +52,7 @@ def shares_scraper(form_link):
 
     for i in rows_text:
         if (i[6] != 'Put') or (i[6] != 'Call'):
-            shares_list.append({'CUSIP': i[2][:6], 'Company': i[0], 'Value': int(i[3].replace(',', '')),
+            shares_list.append({'CUSIP': i[2][:9], 'Company': i[0], 'Value': int(i[3].replace(',', '')),
                                 'Shares': int(i[4].replace(',', ''))})
 
     return shares_list
@@ -89,7 +90,7 @@ def pandas_analysis(fund_dict):
                      dff['Shares_x']) * 100
 
     json_df = dff.round(2).to_json(orient='split')
-    with open('json_df.txt', 'w') as f:
+    with open(os.path.join(os.path.dirname(os.getcwd()), 'app', 'json_df.txt'), 'w') as f:
         json.dump(json_df, f)
 
 
