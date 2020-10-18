@@ -34,7 +34,7 @@ Got a new long or short idea? Find out if most expensive money managers in the w
     {% for i in ownership %}
     <tr>
 
-        <td> {{ i[0] }}</td>
+        <td><a  href="{{ i[2] }}">{{ i[0] }}</a></td>
         {% set value = i[1]|string %}
         <td style="background-color: {{ ownership_colors[loop.index] }}"> {{ value[:4] }}% </td>
    </tr>
@@ -60,7 +60,7 @@ Got a new long or short idea? Find out if most expensive money managers in the w
     {% for i in positives %}
     <tr>
 
-        <td> {{ i[0] }} </td>
+        <td> <a  href="{{ i[2] }}">{{ i[0] }}</a> </td>
         <td style="background-color: {{ positives_colors[loop.index] }}"> +{{ i[1] }}% </td>
    </tr>
 {% endfor %}
@@ -85,7 +85,7 @@ Got a new long or short idea? Find out if most expensive money managers in the w
     {% for i in negatives %}
     <tr>
 
-        <td> {{ i[0] }} </td>
+        <td> <a  href="{{ i[2] }}">{{ i[0] }}</a> </td>
         <td style="background-color: {{ negatives_colors[loop.index] }}"> {{ i[1] }}% </td>
    </tr>
 {% endfor %}

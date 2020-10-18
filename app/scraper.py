@@ -4,7 +4,8 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import json
 # internal
-from config import fund_dict
+import config
+#from config import fund_dict, scrapped_json_fn_no_ticker, scrapped_json_fn, openfigi_apikey
 import os
 
 
@@ -90,9 +91,56 @@ def pandas_analysis(fund_dict):
                      dff['Shares_x']) * 100
 
     json_df = dff.round(2).to_json(orient='split')
-    with open(os.path.join(os.path.dirname(os.getcwd()), 'app', 'json_df.txt'), 'w') as f:
+    with open(config.scrapped_json_fn_no_ticker, 'w') as f:
         json.dump(json_df, f)
+
+def get_tickers_from_cusips(list_of_cusips_):
+    '''
+    input: list_of_cusips
+    output: list_of_stock_tickers
+    '''
+    #jobs_ = [{'idType':'ID_CUSIP','idValue':cusip} for cusip in list_of_cusips_]
+    list_of_tickers = []
+    openfigi_apikey = config.figi_api_key 
+    openfigi_url = 'https://api.openfigi.com/v2/mapping'
+    openfigi_headers = {'Content-Type': 'text/json'}
+    if openfigi_apikey:
+        openfigi_headers['X-OPENFIGI-APIKEY'] = openfigi_apikey
+    for cusip in list_of_cusips_:
+        job_ = [{'idType':'ID_CUSIP','idValue':cusip}]
+        try:
+            response = requests.post(url=openfigi_url, headers=openfigi_headers,
+                         json=job_)
+            respon_json = response.json()
+            response_ticker = respon_json[0]['data'][0]['ticker']
+            list_of_tickers.append(response_ticker)
+            #print(response_ticker)
+        except:
+            list_of_tickers.append(None)
+    return list_of_tickers
+
+def generate_yahoo_link(ticker_):
+    return 'https://finance.yahoo.com/quote/{}?p={}'.format(str(ticker_),str(ticker_))
+
+def generate_and_save_tiker_yahoo_json(fn_):
+    '''
+    input: fn; absolute paht
+    output: json df with stocker ticker and 
+        yahoo url colums added and re-saved
+    '''
+    with open(fn_, 'r') as f:
+        json_df = json.load(f)
+    df_ = pd.read_json(json_df, orient='split').rename_axis('cusip').reset_index()#
+    list_of_cusips = df_.cusip.tolist()
+    df_['ticker'] = get_tickers_from_cusips(list_of_cusips)
+    df_['URL_Yahoo'] = df_.ticker.apply(generate_yahoo_link)
+    json_df_ = df_.to_json(orient='split')
+    with open(fn_, 'w') as f:
+        json.dump(json_df_, f)
+    
+
 
 
 if __name__ == "__main__":
-    pandas_analysis(fund_dict)
+    pandas_analysis(config.fund_dict)
+    generate_and_save_tiker_yahoo_json(config.scrapped_json_fn_no_ticker)

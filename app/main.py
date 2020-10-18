@@ -14,12 +14,16 @@ def index():
     with open('json_df.txt', 'r') as f:
         json_df = json.load(f)
     df = pd.read_json(json_df, orient='split')
-    ownership = df[['Company', 'Ownership']
-                   ].dropna().head(n=20).values.tolist()
+    try:
+        ownership = df[['Company', 'Ownership','URL_Yahoo']
+                     ].dropna().head(n=20).values.tolist()
+    except:
+        ownership = df[['Company', 'Ownership']
+                     ].dropna().head(n=20).values.tolist()
     positives = df.sort_values(
-        'Change', ascending=False)[['Company', 'Change']].dropna().head(n=20).values.tolist()
+        'Change', ascending=False)[['Company', 'Change','URL_Yahoo']].dropna().head(n=20).values.tolist()
     negatives = df.sort_values(
-        'Change')[['Company', 'Change']].dropna().head(n=20).values.tolist()
+        'Change')[['Company', 'Change','URL_Yahoo']].dropna().head(n=20).values.tolist()
 
     return render_template('index.html',
                            ownership=ownership,

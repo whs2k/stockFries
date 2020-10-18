@@ -11,6 +11,12 @@ positives_colors = [
 negatives_colors = [
     'rgba(255,0,0,'+str(i/100)+')' for i in range(2, 42, 2)[::-1]]
 
+figi_api_key = '34dada0c-5a22-4f5a-a095-739afe8fe591' 
+
+scrapped_json_fn = 'json_df.txt'
+
+scrapped_json_fn_no_ticker = 'json_df_no_ticker.txt'
+
 fund_dict = {'Mangrove Partners': 'https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1535392&owner=exclude&count=40&hidefilings=0',
              'Segantii': 'https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1544676&owner=exclude&count=40&hidefilings=0',
              'MIG Capital': 'https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1425649&owner=exclude&count=40&hidefilings=0',
