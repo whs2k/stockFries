@@ -42,17 +42,17 @@
 
         <h5 class="card-subtitle mb-2 ">Diversification By Example</h5>
                 <p class="card-text">Suppose we have a two evenly weighted stock portfolio: 50% in Telsa and 50% in Boeing (the two heaviest holdings on StockFries righ know). Let's calculate the expected return (`E(r_(P))`) and the risk (`sigma_(p)`) of this portfolio:
-                  <br><br>`E(r_(t)) =` Expected Return of Tesla = 10%, `E(r_(b)) = ` 5%
-                  <br>`sigma_(t) =` Standard Deviation of Returns of Telsa = Risk = 15%, `sigma_(b) =` 10%
-                  <br>`rho_(t),_(b) = Correlation Coefficient = -0.5`
-                  <br>`"w_(t) = Weight of Tesla = 50%"`, `"w_(b) = 50%"`
+                  <br><br>`E(r_(t)) =` Expected Return of Tesla = <mark style="background-color: magenta"> 10% </mark>, `E(r_(b)) = ` <mark style="background-color: magenta"> 5% </mark>
+                  <br>`sigma_(t) =` Standard Deviation of Returns of Telsa = Risk = <mark style="background-color: cyan"> 15% </mark>, `sigma_(b) =` <mark style="background-color: cyan"> 10% </mark>
+                  <br>`rho_(t),_(b) =` Correlation Coefficient = -0.5
+                  <br>`w_(t) =` Weight of Tesla = 50%, `w_(b) =` 50%
                   <br>
-                  <br>`E(r_(t)) = w_(t) * E(r_(t)) + w_(b) * E(r_(b)) = 0.5*0.1 + 0.5*.05 = 7.5%"`
+                  <br>`E(r_(t)) = w_(t) * E(r_(t)) + w_(b) * E(r_(b)) =` 0.5*0.1 + 0.5*.05 = <mark style="background-color: magenta"> 7.5% </mark>
                   <br>This is what we would expect (7.5% is halfway between 10 and 5)
                   <br>
                   <br>`sigma_(p) = sqrt (w_(d)^2 * sigma_(d)^2 + w_(e)^2 * sigma_(e)^2 + 2*w_(d)*w_(e)*rho_(a),_(b)*sigma_(a)*sigma(b)*sigma_(b))` 
                   <br>`  = sqrt (0.5^2*0.15^2 + 0.5^2*0.1^2 + 2*0.5*0.5*(-0.5)*0.15*0.1)` 
-                  <br>`  = sqrt (0.005625 + 0.0025 - 0.00375) = 6.6%`
+                  <br>`  = sqrt (0.005625 + 0.0025 - 0.00375) =` <mark style="background-color: cyan"> 6.6% </mark>
                   <br><br> <b>Wow, the risk drops way more than 50%!</b>
                   <br> That's power of diversitifcattion; your risk drops faster than your expected value...assuming you can find stocks with negative covariance or correlation of returns.
                 </p>
