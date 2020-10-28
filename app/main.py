@@ -45,10 +45,13 @@ def blog1():
 def blog2():
     return render_template('BlogPost_2_Basics.html')
 
+@app.route("/blog/3_covar")
+def blog3():
+    return render_template('BlogPost_3_Covar.html')
+
 @app.route("/about")
 def about():
     return render_template('about.html')
-
 
 @app.route("/sitemap.xml")
 def sitemap():

@@ -1,0 +1,78 @@
+<!doctype html>{% extends "layout.html" %}
+{% block content %}
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <div class="card">
+          <div class="card-body">
+            
+              <h5 class="card-subtittle text-muted">--2020-10-25--</h5><h4 class="card-title ">Investing Basics Part 2: Portfolio Metrics</h4> 
+              <h5 class="card-subtitle mb-2 ">Portfolio Return</h5>
+                <p class="card-text">In our last post, we covered how to calculate the expected return `E(r_(a))` of an asset. The Return of a Portfolio  `r_(p)` or a group of assets is the sum of the returns of each asset times the weight of each asset's holding.
+                <br>`r_(p) = sum w_(s) * r_(s)`
+                <br>`w_(s) = `the weight of the security in the portfolio
+                <br> `r_(s) = `the return of that security
+                <br> 
+                <br> The expected return of a portfolio by extension is then:
+                <br> `E(r_(p)) = sum w_(s) * E(r_(s))`
+                <br>`w_(s) = `the weight of the security in the portfolio
+                <br> `E(r_(s)) = `the expected return of that security
+                </p>
+              <br>
+
+              <h5 class="card-subtitle mb-2 ">Portfolio Risk</h5>
+                <p class="card-text">In previous post we reviewed how we calculate the risk of an asset which is simply the standard deviation of the possible returns.  
+                  <br>`Risk=sigma=sqrt(sum p(s)*[E(s)-r(s)]^(2))`
+                  <br>`"s = the asset or securiy given a certain state"`
+                  <br>`p(s) = `the probabiliy of the state
+                  <br>`E(s) = `the expected return of all states
+                  <br>`r(s) = `the extpecetd reurn of that specific state
+                <br> Some Companies do better in down markets:(1) Precious Metals, (2) Certain Insruance Companies and Hedge Funds, and Forclosure Experts and Report Agencies
+                <br>This is why you can't look at stocks individually. Rather, you have to look at how they move in relation to each other. The Risk of a portfolio depends on the correlation of the returns. For example, a portfolio made of primarily of tech companies will have a greater risk--a greater standard deviation of returns--because they all go up and down under similar market conditions. 
+
+                <br><strong>Covariace: </strong>`sum p(s)*[r_(a)(s)-E(r_(a))]*[r_(b)(s)-E(r_(s)]`
+                <br><strong>Correlation: </strong>`rho_(a),_(b) = (covariance(r_(a),r_(b))) / (sigma_(a) * sigma_(b))` 
+                <br><strong>Covariace: </strong>`rho_(a),_(b)*sigma_(a)*sigma(b)*sigma_(b)`
+
+                <br>The risk of a two asset portfolio can then be written as 
+                <br>`sigma_(p)^2 =  w_(d)^2 sigma_(d)^2 + w_(e)^2 sigma_(e)^2 + 2 w_(d) w_(e)*covariance(r_(d), r_(e))`
+                <br>`sigma_(p)^2 =  w_(d)^2 sigma_(d)^2 + w_(e)^2  sigma_(e)^2 + 2*w_(d)*w_(e)*rho_(a),_(b)*sigma_(a)*sigma(b)*sigma_(b)`
+                </p>
+              <br>
+            
+
+        <h5 class="card-subtitle mb-2 ">Diversification By Example</h5>
+                <p class="card-text">Suppose we have a two evenly weighted stock portfolio: 50% in Telsa and 50% in Boeing (the two heaviest holdings on StockFries righ know). Let's calculate the expected return (`E(r_(P))`) and the risk (`sigma_(p)`) of this portfolio:
+                  <br><br>`E(r_(t)) =` Expected Return of Tesla = 10%, `E(r_(b)) = ` 5%
+                  <br>`sigma_(t) =` Standard Deviation of Returns of Telsa = Risk = 15%, `sigma_(b) =` 10%
+                  <br>`rho_(t),_(b) = Correlation Coefficient = -0.5`
+                  <br>`"w_(t) = Weight of Tesla = 50%"`, `"w_(b) = 50%"`
+                  <br>
+                  <br>`E(r_(t)) = w_(t) * E(r_(t)) + w_(b) * E(r_(b)) = 0.5*0.1 + 0.5*.05 = 7.5%"`
+                  <br>This is what we would expect (7.5% is halfway between 10 and 5)
+                  <br>
+                  <br>`sigma_(p) = sqrt (w_(d)^2 * sigma_(d)^2 + w_(e)^2 * sigma_(e)^2 + 2*w_(d)*w_(e)*rho_(a),_(b)*sigma_(a)*sigma(b)*sigma_(b))` 
+                  <br>`  = sqrt (0.5^2*0.15^2 + 0.5^2*0.1^2 + 2*0.5*0.5*(-0.5)*0.15*0.1)` 
+                  <br>`  = sqrt (0.005625 + 0.0025 - 0.00375) = 6.6%`
+                  <br><br> <b>Wow, the risk drops way more than 50%!</b>
+                  <br> That's power of diversitifcattion; your risk drops faster than your expected value...assuming you can find stocks with negative covariance or correlation of returns.
+                </p>
+
+            </div>
+        </div>
+        <a href="{{url_for('static',filename='blog3.1.0_Covar.png')}}" download>
+          <button class="btn"><i class="fa fa-download"></i> Notes P1</button>
+        </a>
+        <a href="{{url_for('static',filename='blog3.2.0_Covar.png')}}" download>
+          <button class="btn"><i class="fa fa-download"></i> Notes P2</button>
+        </a>
+        <a href="{{url_for('static',filename='blog3.3.0_Covar.png')}}" download>
+          <button class="btn"><i class="fa fa-download"></i> Notes P3</button>
+        </a>
+        <a href="{{url_for('static',filename='blog3.4.0_Covar.png')}}" download>
+          <button class="btn"><i class="fa fa-download"></i> Notes P4</button>
+        </a>
+    </div>
+</div>
+
+<br>
+{% endblock %}
