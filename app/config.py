@@ -1,3 +1,5 @@
+import os
+
 blog_1_url = "http://www.stockfries.com/blog/1_gambling"
 blog_2_url = "http://www.stockfries.com/blog/2_basics"
 
@@ -16,6 +18,7 @@ figi_api_key = '34dada0c-5a22-4f5a-a095-739afe8fe591'
 scrapped_json_fn = 'json_df.txt'
 
 scrapped_json_fn_no_ticker = 'json_df_no_ticker.txt'
+scrapped_json_fn_hedgefund = 'json_df_dataByHedgeFund.txt'
 
 fund_dict = {'Mangrove Partners': 'https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1535392&owner=exclude&count=40&hidefilings=0',
              'Segantii': 'https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1544676&owner=exclude&count=40&hidefilings=0',

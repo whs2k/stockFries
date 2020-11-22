@@ -49,15 +49,23 @@
           StockFries
           </a>
 
+          
+
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="/blog">Blog</a> | <a href="/about">About</a></li>
+            <li style="text-align: right"><a href="/blog">Blog</a> | <a href="/about">About</a></li>
+            <li><small><small>Most recent filing: <a href="{{ most_recent_filing_url }}"> {{ most_recent_filing_firm }}</a> {{ most_recent_filing_date }}</small></small></li>
+        		
           </ul>
+
         </div><!--/.container-fluid -->
+
       </nav>
 
     </div>
 <br>
 <br>
+
+
       {% block content %}{% endblock %}
 
     <footer class="footer" style="background: rgb(248,248,255)">

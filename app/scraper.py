@@ -7,6 +7,8 @@ import json
 import config
 #from config import fund_dict, scrapped_json_fn_no_ticker, scrapped_json_fn, openfigi_apikey
 import os
+import re
+import datetime
 
 
 def forms_scraper(fund_link):
@@ -14,6 +16,7 @@ def forms_scraper(fund_link):
     r = requests.get(fund_link)
     soup = BeautifulSoup(r.content, 'html.parser')
     filing_links = []
+    filing_dates = []
     table = soup.find_all('table')[2]
     rows = [i for i in table.find_all('tr')]
     for i in rows:
@@ -23,6 +26,10 @@ def forms_scraper(fund_link):
                 base_link = 'https://www.sec.gov'
                 link = i.find('a').get('href')
                 filing_links.append(base_link + link)
+                date = re.search("([0-9]{4}\-[0-9]{2}\-[0-9]{2})\n",(i.text)).group()
+                #print('date:::::', date)
+                filing_dates.append(date)
+    max_filing_date = str(max(filing_dates)).replace('\n','')
 
     form_links = []
     for i in filing_links[:2]:
@@ -31,7 +38,7 @@ def forms_scraper(fund_link):
         table = soup.find('table')
         rows = [i for i in table.find_all('tr')]
         form_links.append(base_link + rows[3].find('a').get('href'))
-    return form_links
+    return form_links, max_filing_date
 
 
 def shares_scraper(form_link):
@@ -63,15 +70,20 @@ def pandas_analysis(fund_dict):
     """Takes the fund dict and gets the filings URLS from forms_scraper, then extends two aggregate lists for the current and previous holdings across all funds before analysis in pandas and export to json txt"""
     list_current = []
     list_previous = []
-    for k, v in fund_dict.items():
+    fund_dict_scraped_current = {}
+    fund_dict_scraped_previous = {}
+    for fund_name, fund_link in fund_dict.items():
         try:
-            forms = forms_scraper(v)
-            print(forms)
+            forms, max_form_date = forms_scraper(fund_link)
+            print(datetime.datetime.now(), ' :: Scrpaing :: ',forms)
             shares_list_current = shares_scraper(forms[0])
             list_current.extend(shares_list_current)
             shares_list_previous = shares_scraper(forms[1])
             list_previous.extend(shares_list_previous)
-        except:
+            fund_dict_scraped_current[fund_name] = [fund_link, max_form_date, shares_list_current,shares_list_current]
+            fund_dict_scraped_previous[fund_name] = [fund_link, max_form_date, shares_list_current,shares_list_previous]
+        except Exception as e:
+            print('We got an error here!:', e, flush=True)
             pass
 
     df_current = pd.DataFrame(list_current)
@@ -93,6 +105,11 @@ def pandas_analysis(fund_dict):
     json_df = dff.round(2).to_json(orient='split')
     with open(config.scrapped_json_fn_no_ticker, 'w') as f:
         json.dump(json_df, f)
+
+    json_df_byfund = pd.DataFrame(fund_dict_scraped_current).to_json(orient='split')
+    with open(config.scrapped_json_fn_hedgefund, 'w') as f:
+        json.dump(json_df_byfund, f)
+    #print(df_byfund.tail(), flush=True)
 
 def get_tickers_from_cusips(list_of_cusips_):
     '''

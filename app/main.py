@@ -3,10 +3,22 @@ from flask import Flask, render_template
 import pandas as pd
 import json
 # internal
+import config
 from config import change_threshold, ownership_colors, positives_colors, negatives_colors
 
 app = Flask(__name__)
 
+fn_dataByHedge = 'json_df_dataByHedgeFund.txt'
+fn2 = 'json_df_no_ticker.txt'
+#fn = os.path.join(os.path.dirname(os.getcwd()), 'app', 'json_df.txt') #app/json_df.txt
+
+with open(config.scrapped_json_fn_hedgefund, 'r') as f:
+    hedge_fund_json_dg = json.load(f)
+df_recent_filing = pd.read_json(hedge_fund_json_dg, orient='split').T.rename(columns={0:'link',1:'recent_filing_date',2:'current_holdings',3:'previous_holdings'})
+df_recent_filing_head = df_recent_filing [df_recent_filing.recent_filing_date == df_recent_filing.recent_filing_date.max()].head(1)
+most_recent_filing_date = df_recent_filing_head.recent_filing_date.tolist()[0]
+most_recent_filing_url = df_recent_filing_head.link.tolist()[0]
+most_recent_filing_fund = df_recent_filing_head.index.tolist()[0]
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
@@ -31,27 +43,45 @@ def index():
                            negatives=negatives,
                            ownership_colors=ownership_colors,
                            positives_colors=positives_colors,
-                           negatives_colors=negatives_colors)
+                           negatives_colors=negatives_colors,
+                           most_recent_filing_url=most_recent_filing_url,
+                           most_recent_filing_firm=most_recent_filing_fund,
+                           most_recent_filing_date=most_recent_filing_date)
 
 @app.route("/blog")
 def blog():
-    return render_template('blog.html')
+    return render_template('blog.html',
+                           most_recent_filing_url=most_recent_filing_url,
+                           most_recent_filing_firm=most_recent_filing_fund,
+                           most_recent_filing_date=most_recent_filing_date)
 
 @app.route("/blog/1_gambling")
 def blog1():
-    return render_template('BlogPost_1_Gambling.html')
+    return render_template('BlogPost_1_Gambling.html',
+                           most_recent_filing_url=most_recent_filing_url,
+                           most_recent_filing_firm=most_recent_filing_fund,
+                           most_recent_filing_date=most_recent_filing_date)
 
 @app.route("/blog/2_basics")
 def blog2():
-    return render_template('BlogPost_2_Basics.html')
+    return render_template('BlogPost_2_Basics.html',
+                           most_recent_filing_url=most_recent_filing_url,
+                           most_recent_filing_firm=most_recent_filing_fund,
+                           most_recent_filing_date=most_recent_filing_date)
 
 @app.route("/blog/3_covar")
 def blog3():
-    return render_template('BlogPost_3_Covar.html')
+    return render_template('BlogPost_3_Covar.html',
+                           most_recent_filing_url=most_recent_filing_url,
+                           most_recent_filing_firm=most_recent_filing_fund,
+                           most_recent_filing_date=most_recent_filing_date)
 
 @app.route("/about")
 def about():
-    return render_template('about.html')
+    return render_template('about.html',
+                           most_recent_filing_url=most_recent_filing_url,
+                           most_recent_filing_firm=most_recent_filing_fund,
+                           most_recent_filing_date=most_recent_filing_date)
 
 @app.route("/sitemap.xml")
 def sitemap():
