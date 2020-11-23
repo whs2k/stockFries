@@ -6,10 +6,11 @@ import json
 import config
 from config import change_threshold, ownership_colors, positives_colors, negatives_colors
 
+pd.set_option('display.max_colwidth', -1)
 app = Flask(__name__)
 
-fn_dataByHedge = 'json_df_dataByHedgeFund.txt'
-fn2 = 'json_df_no_ticker.txt'
+#fn_dataByHedge = 'json_df_dataByHedgeFund.txt'
+#fn2 = 'json_df_no_ticker.txt'
 #fn = os.path.join(os.path.dirname(os.getcwd()), 'app', 'json_df.txt') #app/json_df.txt
 
 with open(config.scrapped_json_fn_hedgefund, 'r') as f:
@@ -23,14 +24,14 @@ most_recent_filing_fund = df_recent_filing_head.index.tolist()[0]
 @app.route("/", methods=['GET', 'POST'])
 def index():
     """Creates the main page via Flask, reads tables by creating three lists from the json loaded dataframe and loads colors gradients from config"""
-    with open('json_df.txt', 'r') as f:
+    with open(config.scrapped_json_fn, 'r') as f:
         json_df = json.load(f)
     df = pd.read_json(json_df, orient='split')
     try:
         ownership = df[['Company', 'Ownership','URL_Yahoo']
                      ].dropna().head(n=20).values.tolist()
     except:
-        ownership = df[['Company', 'Ownership']
+      ownership = df[['Company', 'Ownership']
                      ].dropna().head(n=20).values.tolist()
     positives = df.sort_values(
         'Change', ascending=False)[['Company', 'Change','URL_Yahoo']].dropna().head(n=20).values.tolist()
@@ -44,6 +45,27 @@ def index():
                            ownership_colors=ownership_colors,
                            positives_colors=positives_colors,
                            negatives_colors=negatives_colors,
+                           most_recent_filing_url=most_recent_filing_url,
+                           most_recent_filing_firm=most_recent_filing_fund,
+                           most_recent_filing_date=most_recent_filing_date)
+
+@app.route("/data_byHedgeFund", methods=['GET', 'POST'])
+def index_byHedgeFund():
+    """Creates the main page via Flask, reads tables by creating three lists from the json loaded dataframe and loads colors gradients from config"""
+    try:
+      filings_by_fund = df_recent_filing.reset_index().rename(columns={'index':'fund_name'}) \
+                    [['fund_name','recent_filing_date','current_holdings','previous_holdings','link']
+                    ].dropna().head(n=50).values.tolist()
+      for i, fund_filing in enumerate(filings_by_fund):
+        filings_by_fund_stocksOnly = [x['Company'] for x in fund_filing[2]]
+        filings_by_fund[i].insert(6, filings_by_fund_stocksOnly)
+      #print(filings_by_fund[0][5])
+    except Exception as e:
+      print('Error Pulling outt Filings by Fund', flush=True)
+      print(e, flush=True)
+      pass
+    return render_template('index_byHedgeFund.html',
+                          filings_by_fund=filings_by_fund,
                            most_recent_filing_url=most_recent_filing_url,
                            most_recent_filing_firm=most_recent_filing_fund,
                            most_recent_filing_date=most_recent_filing_date)

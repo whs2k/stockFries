@@ -16,7 +16,6 @@ negatives_colors = [
 figi_api_key = '34dada0c-5a22-4f5a-a095-739afe8fe591' 
 
 scrapped_json_fn = 'json_df.txt'
-
 scrapped_json_fn_no_ticker = 'json_df_no_ticker.txt'
 scrapped_json_fn_hedgefund = 'json_df_dataByHedgeFund.txt'
 

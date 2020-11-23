@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="row mx-auto">
+<div class="col-md-8 mx-auto">
+<!--<div class="card">-->
+<!--<div class="card-body">-->
+      <h3 class="card-title text-center">Information from the world’s best investors
+</h3>
+    <p class="card-text text-center">Check out the scraped data grouped by hedge fund. Learn more about how hedge funds decide on which stocks to buy in our blog: TBD. 
+    <a href="{{url_for('static', filename='json_df_dataByHedgeFund.txt')}}" download>
+          <button class="btn"><i class="fa fa-download"></i> Download Data</button>
+        </a></p>
+  </div>
+<!--</div>-->
+<!--</div>-->
+</div>
+<br>
+<br>
+
+<div class="row mx-auto">
+<div lass="mx-auto">
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Ownership by Fund</h5>
+<table class="table table-hover table-condensed w-auto table-striped">
+   <thead>
+   <tr>
+       <th>Fund </th>
+       <th>Recent_Filing_Date</th>
+       <th>Current Holdings</th>
+   </tr>
+   </thead>
+    <tbody>
+    {% for i in filings_by_fund %}
+    <!--filings_by_fund example: ['Mangrove Partners', 
+                                  '2020-11-16', 
+                                  [{'CUSIP': '03076C106', 'Company': 'AMERIPRISE FINL INC', 'Value': 14889, 'Shares': 96615}, 'Company': 'WESTERN ALLIANCE BANCORP', 'Value': 713, 'Shares': 22545}],
+                                  [{'CUSIP': '03076C106', 'Company': 'AMERIPRISE FINL INC', 'Value': 14889, 'Shares': 96615}, 'Company': 'WESTERN ALLIANCE BANCORP', 'Value': 713, 'Shares': 22545}], 
+                                  'https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1535392&owner=exclude&count=40&hidefilings=0',
+                                  ['AMERIPRISE FINL INC',''WESTERN ALLIANCE BANCORP']] -->
+    <tr>
+
+        <td><a  href="{{ i[4] }}">{{ i[0] }}</a></td>
+        <td style="word-wrap: break-word">{{ i[1] }}</td>
+        {% set value = i[5]|string %}
+        <td style="word-wrap: break-word"> {{ value }}% </td>
+   </tr>
+{% endfor %}
+    </tbody>
+
+</table>
+  </div>
+</div>
+</div>
+</div>
+<br><br><br>
+{% endblock %}
+

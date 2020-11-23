@@ -9,6 +9,7 @@ import config
 import os
 import re
 import datetime
+import shutil 
 
 
 def forms_scraper(fund_link):
@@ -109,6 +110,14 @@ def pandas_analysis(fund_dict):
     json_df_byfund = pd.DataFrame(fund_dict_scraped_current).to_json(orient='split')
     with open(config.scrapped_json_fn_hedgefund, 'w') as f:
         json.dump(json_df_byfund, f)
+
+    try: #Copy over files to static folder for downloading
+        to_static_fn_byHF = os.path.join(os.getcwd(),
+            'static',os.path.basename(config.scrapped_json_fn_hedgefund))
+        print('Copying File to: ',to_static_fn_byHF, flush=True)
+        shutil.copyfile(config.scrapped_json_fn_hedgefund, to_static_fn_byHF)
+    except Exception as e:
+        print('Error in file Copy: ', e, flush=True)
     #print(df_byfund.tail(), flush=True)
 
 def get_tickers_from_cusips(list_of_cusips_):
@@ -154,6 +163,13 @@ def generate_and_save_tiker_yahoo_json(fn_):
     json_df_ = df_.to_json(orient='split')
     with open(fn_, 'w') as f:
         json.dump(json_df_, f)
+    try: #Copy over files to static folder for downloading
+        to_static_fn = os.path.join(os.getcwd(),
+            'static',os.path.basename(fn_))
+        print('Copying File to: ',to_static_fn, flush=True)
+        shutil.copyfile(fn_, to_static_fn)
+    except Exception as e:
+        print('Error in file Copy: ', e, flush=True)
     
 
 
