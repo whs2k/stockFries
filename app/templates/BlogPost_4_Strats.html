@@ -1,0 +1,91 @@
+<!doctype html>{% extends "layout.html" %}
+{% block content %}
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <div class="card">
+          <div class="card-body">
+            
+              <h5 class="card-subtittle text-muted">--2020-12-08--</h5><h4 class="card-title ">Portfolio Creation Part 1: Picking Stocks</h4> 
+              <h5 class="card-subtitle mb-2 ">Where to Start</h5>
+                <p class="card-text">So you've got some money and want to invest it. If you don't want to play it safe and just pick some mutual funds</a> then your first step is to decide on a trading strategy (strat). The best way to understand the different strategies imployed by the world's biggest hedge funds is to identify: (1) the oppurtunity set (equities, fixed income, and futures/fx) and (2) strategy employed. 
+                </p>
+              <br>
+
+              <h5 class="card-subtitle mb-2 ">Equities</h5>
+                <p class="card-text">
+                  <ul>
+                    <li class="card-text"> 
+                      <b>Long/Short</b>: Pick stocks using fundamental investing techniques. Typically value-investors or GARP by nature holding concentrated portfolios. Attempts to gain “better” information advantage about portfolio companies. With deep-dives into company’s earnings quality/management quality/business prospects. Many times long/short managers will focus on specific sectors. eg. Tiger and Tiger clubs, Buffett-clones, Activists, T2, Ichan, Einhorn,
+                    </li>
+                    <li class="card-text">
+                      <b>Short-Biased</b>: Betting against stocks that are considered fundamentally “bad.” Managers attempt to profit by shorting weak companies. These hedge fund managers attempt to identify corporate frauds, to examine forensic accounting issues and flaws with business model  e.g. Island Drive, Kingsford, Jim Chanos of Kynikos
+                    </li>
+                    <li class="card-text">
+                      <b>Equity Market Neutral</b>: “Quants” incorporate, value, B/M, P/E; size; momentum; reversals; convergence trades, pairs trading; statistical arb; high frequency trading; index arbitrage, eg. Bogle, BGI32, Symphony, O’Connor, Univ of Chicago PhDs, Fama’s students
+                    </li>
+                    <li class="card-text">
+                      <b>Event Driven</b>: Betting on specific corporate or geo-political <a href="https://priceonomics.com/the-trade-of-the-century-when-george-soros-broke/"> events</a>. “Special situations” investors attempting to capitalize on corporate events such as a merger, corporate restructuring, liquidation, bankruptcy, etc. Mergers: cash deals, stock-for-stock, stock and/or cash, collars; spin-offs; stubs; distressed securities, bankruptcy, when-issued; IPOs; SPACs, eg. Paulson, Donatello, Farallon 
+                    </li>
+                    <li class="card-text">
+                      <b>Emerging Markets</b>: Long/Short/Fixed Income with local market expertise, typically stock selection and hedge with liquid instruments, country selection, currencies, eg. Boyer Allan, Everest, LIM, SPARX, (BRIC, Mark Mobias)
+                    </li>
+                  </ul>
+                </p>
+              <br>
+
+              <h5 class="card-subtitle mb-2 ">Fixed Income</h5>
+                <p class="card-text">
+                  <ul>
+                    <li class="card-text"> 
+                      <b>Fixed Income Arbitrage</b>: Trade the yield curve, or credit curve. Managers attempt to gain edge by trading predominantly fixed income securities such as interest rate swap arbitrage, US/non-US gov’t bond arbitrage, forward yield curve arbitrage, yield curve behaviors, butterfly; mortgage backed securities arbitrage; CDS-bond basis; on-the-run/off-the-run, eg. Long-Term Capital, Oakhill, Ellington, III, MKP, PIMCO
+                    </li>
+                    <li class="card-text"> 
+                      <b>Convertible Arbitrage</b>: Typical trade includes long converts, hedge equity and/or credit, fixed income; flip newly issued convert, gamma, busted, high-money, e.g. Citadel, Canyon, CQS, Nisswa, Quattro, Wolverine, Zazove
+                    </li>
+                    <li class="card-text"> 
+                      <b>Convertible Arbitrage</b>: Typical trade includes long converts, hedge equity and/or credit, fixed income; flip newly issued convert, gamma, busted, high-money, e.g. Citadel, Canyon, CQS, Nisswa, Quattro, Wolverine, Zazove
+                    </li>
+                    
+                  </ul>
+                </p>
+              <br>
+
+              <h5 class="card-subtitle mb-2 ">FX / Futures</h5>
+                <p class="card-text">
+                  <ul>
+                    <li class="card-text"> 
+                      <b>Global Macro</b>: Trade discretionary across global liquid markets. Discretionary trading, trade in anticipation of global macro shifts, carry-trade (uncovered interest rate parity); devaluation; thematic; global yield curves; monetary/fiscal policies, macro economics, real rates across countries; tactical asset allocation, eg. Soros, Brevan-Howard, Pantera
+                    </li>
+                    <li class="card-text"> 
+                      <b>Managed Futures / Systemaic CTAs </b>: Trade systematic across global liquid markets. Trend-followers, countertrends, overextended trends, as well as concentrated fundamentals, eg. Aspect, BlueTrend, Campbell, Crabel, Graham,  AHL Man,  Sunrise, AHL, Winton, Millburn, MLM, Quadriga, Rotella, Roy G. Niderhoffer, RQSI, Sunrise, Transtrend
+                    </li>
+                  </ul>
+                </p>
+              <br>
+
+
+              <h5 class="card-subtitle mb-2 ">Multi-Strategy</h5>
+                <p class="card-text">
+                  <ul>
+                    <li class="card-text"> 
+                      <b>Multi-Strat</b>: Combines several hedge fund strategies and attempts to rotate across strategies, eg. GLG, Concordia, Highbridge, DE Shaw, TPG, OZ
+                    </li>
+                    <li class="card-text"> 
+                      <b>Fund of Funds</b>: Invests in a portfolio of hedge funds, eg. Rock Creek, PAAMCO, UBP, Glenwood
+                    </li>
+                  </ul>
+                </p>
+              <br>
+            
+
+            </div>
+        </div>
+        <a href="{{url_for('static',filename='blog3.1.0_Covar.png')}}" download>
+          <button class="btn"><i class="fa fa-download"></i> Notes P1</button>
+        </a>
+        
+    </div>
+</div>
+
+<br>
+{% endblock %}

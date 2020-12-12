@@ -17,3 +17,6 @@ sudo docker-compose up #Spinup docker instance (run as is to make sure there are
 
 4. Stop and Clear Container
 ```sudo docker-compose down```
+
+5. To test scraping:
+cd /home/ubuntu/stockFries/app/ && python scraper.py

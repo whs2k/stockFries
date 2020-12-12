@@ -97,6 +97,12 @@ def blog3():
                            most_recent_filing_url=most_recent_filing_url,
                            most_recent_filing_firm=most_recent_filing_fund,
                            most_recent_filing_date=most_recent_filing_date)
+@app.route("/blog/4_strats")
+def blog4():
+    return render_template('BlogPost_4_Strats.html',
+                           most_recent_filing_url=most_recent_filing_url,
+                           most_recent_filing_firm=most_recent_filing_fund,
+                           most_recent_filing_date=most_recent_filing_date)
 
 @app.route("/about")
 def about():
