@@ -106,7 +106,9 @@ def blog4():
 
 @app.route("/about")
 def about():
+    fund_link_dictionary_list = [[key, val] for key, val in config.fund_dict.items()]
     return render_template('about.html',
+                          fund_name_link_zipped_list=fund_link_dictionary_list,
                            most_recent_filing_url=most_recent_filing_url,
                            most_recent_filing_firm=most_recent_filing_fund,
                            most_recent_filing_date=most_recent_filing_date)
@@ -117,4 +119,4 @@ def sitemap():
 
 
 if __name__ == "__main__":
-    app.run(threaded=True)
+    app.run(threaded=True, debug=True)

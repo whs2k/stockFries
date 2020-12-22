@@ -10,6 +10,7 @@ import os
 import re
 import datetime
 import shutil 
+import traceback
 
 
 def forms_scraper(fund_link):
@@ -140,34 +141,44 @@ def get_tickers_from_cusips(list_of_cusips_):
             respon_json = response.json()
             response_ticker = respon_json[0]['data'][0]['ticker']
             list_of_tickers.append(response_ticker)
-            #print(response_ticker)
-        except:
+            #print('Sucessful response_ticker: ',response_ticker,flush=True)
+        except Exception:
             list_of_tickers.append(None)
+            print('Error in get_tickers_from_cusips: ',response_ticker, flush=True)
+            print('JSON_Response: ', respon_json)
+            print(traceback.format_exc(), flush=True)
     return list_of_tickers
 
 def generate_yahoo_link(ticker_):
     return 'https://finance.yahoo.com/quote/{}?p={}'.format(str(ticker_),str(ticker_))
 
-def generate_and_save_tiker_yahoo_json(fn_):
+def generate_and_save_tiker_yahoo_json(input_fn_, export_fn_):
     '''
     input: fn; absolute paht
     output: json df with stocker ticker and 
         yahoo url colums added and re-saved
     '''
-    with open(fn_, 'r') as f:
+    with open(input_fn_, 'r') as f:
         json_df = json.load(f)
-    df_ = pd.read_json(json_df, orient='split').rename_axis('cusip').reset_index()#
+    df_ = pd.read_json(json_df, orient='split')#.rename_axis('cusip').reset_index()#
     list_of_cusips = df_.cusip.tolist()
     df_['ticker'] = get_tickers_from_cusips(list_of_cusips)
     df_['URL_Yahoo'] = df_.ticker.apply(generate_yahoo_link)
     json_df_ = df_.to_json(orient='split')
-    with open(fn_, 'w') as f:
+    #with open(input_fn_, 'w') as f:
+    #    json.dump(json_df_, f)
+    with open(export_fn_, 'w') as f:
         json.dump(json_df_, f)
+        print('Saving File to: ',export_fn_, flush=True)
     try: #Copy over files to static folder for downloading
-        to_static_fn = os.path.join(os.getcwd(),
-            'static',os.path.basename(fn_))
-        print('Copying File to: ',to_static_fn, flush=True)
-        shutil.copyfile(fn_, to_static_fn)
+        to_static_fn_input = os.path.join(os.getcwd(),
+            'static',os.path.basename(input_fn_))
+        to_static_fn_export = os.path.join(os.getcwd(),
+            'static',os.path.basename(export_fn_))
+        print('Copying File to: ',to_static_fn_input, flush=True)
+        shutil.copyfile(input_fn_, to_static_fn_input)
+        print('Copying File to: ',to_static_fn_export, flush=True)
+        shutil.copyfile(export_fn_, to_static_fn_export)
     except Exception as e:
         print('Error in file Copy: ', e, flush=True)
     
@@ -176,4 +187,4 @@ def generate_and_save_tiker_yahoo_json(fn_):
 
 if __name__ == "__main__":
     pandas_analysis(config.fund_dict)
-    generate_and_save_tiker_yahoo_json(config.scrapped_json_fn_no_ticker)
+    generate_and_save_tiker_yahoo_json(config.scrapped_json_fn_no_ticker, config.scrapped_json_fn)
