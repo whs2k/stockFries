@@ -96,16 +96,17 @@
     <footer class="footer" style="background: rgb(248,248,255)">
       <div class="container">
           
+          <div class="d-none d-md-block">
+            <a href="{{url_for('static', filename='json_df.txt')}}" download><span style="float:left;" class="hidden-phone">
+            <button class="btn"><i class="fa fa-download"></i> Data by Stocks</button></span></a>
 
-          <a href="{{url_for('static', filename='json_df.txt')}}" class="hidden-md-down" download><span style="float:left;">
-          <button class="btn hidden-md-down"><i class="fa fa-download"></i> Data by Stocks</button></span></a>
-
-          <a href="{{url_for('static', filename='json_df_dataByHedgeFund.txt')}}" download><span style="float:left;">
-          <button class="btn"><i class="fa fa-download"></i> Data by Hedge Funds</button></span></a>
+            <a href="{{url_for('static', filename='json_df_dataByHedgeFund.txt')}}" download><span style="float:left;" class="hidden-phone">
+            <button class="btn"><i class="fa fa-download"></i> Data by Hedge Funds</button></span></a>
+          </div>
         
 
         <a href="https://github.com/whs2k/stockFries">  <span style="float:right;"><i class="fa fa-github" style="font-size:20px;color:grey"></i></span></a>
-        <span style="float:right;font-size:24px"><p>&nbsp; | &nbsp;</p></span>
+        <span style="float:right;font-size:24px"><p>&nbsp;</p></span>
         <a href="https://twitter.com/stockfries"><span style="float:right;"><i class="fa fa-twitter" style="font-size:20px;color:grey"></i></span></a>
       </div>
       <!--
