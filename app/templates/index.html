@@ -2,16 +2,29 @@
 
 {% block content %}
 
+<!-- Media.net banner ad -->
+<div id="946937501">
+    <script type="text/javascript">
+        try {
+            window._mNHandle.queue.push(function (){
+                window._mNDetails.loadTag("946937501", "728x90", "946937501");
+            });
+        }
+        catch (error) {}
+    </script>
+</div>
+
 <div class="row mx-auto">
 <div class="col-md-8 mx-auto">
 <!--<div class="card">-->
 <!--<div class="card-body">-->
-<br>
       <h3 class="card-title text-center">Information from the world’s best investors
 </h3>
     <p class="card-text text-center">Sure, investing in a diversified fund of funds is the <a href="https://obliviousinvestor.com/8-sample-and-simple-portfolios/">best long term strategy</a>, but isn’t it more fun to pick NVIDIA than the Vanguard Small-Cap Value Index (VISVX, VBR)?
 
 Got a new long or short idea? Find out if most expensive money managers in the world are thinking the same</p>
+  <a href="{{url_for('static', filename='json_df_dataByHedgeFund.txt')}}" download>
+          <button class="btn"><i class="fa fa-download"></i> Download Data</button>
   </div>
 <!--</div>-->
 <!--</div>-->

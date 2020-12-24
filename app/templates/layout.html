@@ -19,9 +19,18 @@
     <link rel="icon" href="{{url_for('static', filename='logo_dark.ico')}}">'
     <title>StockFries</title>
 
+    <!-- Media.net-->
+    <script type="text/javascript">
+    window._mNHandle = window._mNHandle || {};
+    window._mNHandle.queue = window._mNHandle.queue || [];
+    medianet_versionId = "3121199";
+    </script>
+    <script src="https://contextual.media.net/dmedianet.js?cid=8CU5H1372" async="async"></script>
+
 
 <!-- Font Awesome -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+
 <!-- Google Fonts -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
 <!-- Bootstrap core CSS -->
@@ -30,6 +39,9 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 <!-- Material Design Icons -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<!-- Font Awesome Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=AM_CHTML"></script>
 
 <!--    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">-->
@@ -72,9 +84,20 @@
       {% block content %}{% endblock %}
 
     <footer class="footer" style="background: rgb(248,248,255)">
-      <div class="container" style="text-align:left">
-        <p>Copyright © 2020 StockFries</p>
+      <div class="container">
+        <span style="float:left;">Copyright © 2021 StockFries</span>
+        <a href="https://github.com/whs2k/stockFries">  <span style="float:right;"><i class="fa fa-github" style="font-size:24px"></i></span></a>
+        <a href="https://twitter.com/stockfries"><span style="float:right;"><i class="fa fa-twitter" style="font-size:24px">    </i></span></a>
       </div>
+      <!--
+      <div class="container" style="text-align:left">
+        Copyright © 2021 StockFries
+      </div>
+      <div class="container" style="text-align:right">
+        
+      </div>
+      -->
+      
     </footer>
 
   </body>
