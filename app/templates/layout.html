@@ -95,9 +95,18 @@
 
     <footer class="footer" style="background: rgb(248,248,255)">
       <div class="container">
-        <span style="float:left;">Copyright © 2021 StockFries</span>
-        <a href="https://github.com/whs2k/stockFries">  <span style="float:right;"><i class="fa fa-github" style="font-size:24px"></i></span></a>
-        <a href="https://twitter.com/stockfries"><span style="float:right;"><i class="fa fa-twitter" style="font-size:24px">    </i></span></a>
+          
+
+          <a href="{{url_for('static', filename='json_df.txt')}}" download><span style="float:left;">
+          <button class="btn"><i class="fa fa-download"></i> Data by Stocks</button></span></a>
+
+          <a href="{{url_for('static', filename='json_df_dataByHedgeFund.txt')}}" download><span style="float:left;">
+          <button class="btn"><i class="fa fa-download"></i> Data by Hedge Funds</button></span></a>
+        
+
+        <a href="https://github.com/whs2k/stockFries">  <span style="float:right;"><i class="fa fa-github" style="font-size:20px;color:grey"></i></span></a>
+        <span style="float:right;font-size:24px"><p>&nbsp; | &nbsp;</p></span>
+        <a href="https://twitter.com/stockfries"><span style="float:right;"><i class="fa fa-twitter" style="font-size:20px;color:grey"></i></span></a>
       </div>
       <!--
       <div class="container" style="text-align:left">
