@@ -117,6 +117,10 @@ def about():
 def sitemap():
     return render_template('sitemap.xml')
 
+@app.route("/ads.txt")
+def ads_txt():
+    return render_template('ads.txt')
+
 
 if __name__ == "__main__":
     app.run(threaded=True, debug=True)
