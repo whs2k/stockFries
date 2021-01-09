@@ -5,8 +5,10 @@ blog_2_url = "http://www.stockfries.com/blog/2_basics"
 
 
 change_threshold = 50000
-
 ownership_colors = [
+    'secondary' for i in range(2, 42, 2)[::-1]]
+
+ownership_colors_old = [
     'rgba(0,0,255,'+str(i/100)+')' for i in range(2, 42, 2)[::-1]]
 positives_colors = [
     'rgba(0,255,0,'+str(i/100)+')' for i in range(2, 42, 2)[::-1]]

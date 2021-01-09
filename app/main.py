@@ -121,6 +121,10 @@ def sitemap():
 def ads_txt():
     return render_template('ads.txt')
 
+@app.route("/index_js")
+def index_js():
+    return render_template("index_old.js")
+
 
 if __name__ == "__main__":
-    app.run(threaded=True, debug=True)
+    app.run(threaded=True)
