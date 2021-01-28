@@ -18,6 +18,7 @@ figi_api_key = '34dada0c-5a22-4f5a-a095-739afe8fe591'
 scrapped_json_fn = 'json_df.txt'
 scrapped_json_fn_no_ticker = 'json_df_no_ticker.txt'
 scrapped_json_fn_hedgefund = 'json_df_dataByHedgeFund.txt'
+scrapped_json_fn_options = 'json_df_options.txt'
 
 fund_dict = {'ABRAMS CAPITAL MANAGEMENT, L.P.': 'https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1358706&owner=exclude&count=40&hidefilings=0',
              'AKRE CAPITAL MANAGEMENT': 'https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1112520&owner=exclude&count=40&hidefilings=0',
@@ -53,6 +54,7 @@ fund_dict = {'ABRAMS CAPITAL MANAGEMENT, L.P.': 'https://www.sec.gov/cgi-bin/bro
              'MASTERS CAPITAL MANAGEMENT': 'https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1104186&owner=exclude&count=40&hidefilings=0',
              'MANGROVE PARTNERS': 'https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1535392&owner=exclude&count=40&hidefilings=0',
              'MARCATO CAPITAL MANAGEMENT LP': 'https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1541996&owner=exclude&count=40&hidefilings=0',
+             'Melvin Capital Management LP': 'https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001628110&owner=include&count=40&hidefilings=0',
              'MKP Capital Management, L.L.C.':'https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001534949&owner=include&count=40&hidefilings=0',
              'MIG CAPITAL': 'https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1425649&owner=exclude&count=40&hidefilings=0',
              'OMEGA ADVISORS INC.': 'https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=898202&owner=exclude&count=40&hidefilings=0',

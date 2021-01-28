@@ -43,7 +43,7 @@ def forms_scraper(fund_link):
     return form_links, max_filing_date
 
 
-def shares_scraper(form_link):
+def shares_scraper(form_link, name_of_hf):
     """Takes a filing link and appends all holdings to a list"""
     r = requests.get(form_link)
     soup = BeautifulSoup(r.content, 'html.parser')
@@ -51,6 +51,7 @@ def shares_scraper(form_link):
     rows = table.find_all('tr')[3:]
 
     shares_list = []
+    options_list = []
     rows_text = []
     for i in rows:
         cols = i.find_all('td')
@@ -59,13 +60,20 @@ def shares_scraper(form_link):
             if col is not None:
                 cols_text.append(col.text)
         rows_text.append(cols_text)
+    #print('rows_text: ', rows_text, flush=True)
 
     for i in rows_text:
+        #print('i: ', i, flush=True)
         if (i[6] != 'Put') or (i[6] != 'Call'):
             shares_list.append({'CUSIP': i[2][:9], 'Company': i[0], 'Value': int(i[3].replace(',', '')),
                                 'Shares': int(i[4].replace(',', ''))})
+        if (i[6] == 'Put') or (i[6] == 'Call'):
+            #print('i: ',i)
+            options_list.append({'HF_Name':name_of_hf,'CUSIP': i[2][:9], 'Company': i[0], 'Value':
+                                 int(i[3].replace(',', '')),
+                                'Shares': int(i[4].replace(',', '')), 'Option_Type': i[6]})
 
-    return shares_list
+    return shares_list, options_list
 
 
 def pandas_analysis(fund_dict):
@@ -74,16 +82,23 @@ def pandas_analysis(fund_dict):
     list_previous = []
     fund_dict_scraped_current = {}
     fund_dict_scraped_previous = {}
+    options_list_current_full = []
+    options_list_previous_full = []
     for fund_name, fund_link in fund_dict.items():
         try:
             forms, max_form_date = forms_scraper(fund_link)
             print(datetime.datetime.now(), ' :: Scrpaing :: ',forms)
-            shares_list_current = shares_scraper(forms[0])
+            shares_list_current, options_list_current = shares_scraper(forms[0], 
+                                                                       name_of_hf=fund_name)
             list_current.extend(shares_list_current)
-            shares_list_previous = shares_scraper(forms[1])
+            options_list_current_full.extend(options_list_current)
+            shares_list_previous, options_list_previous = shares_scraper(forms[1],
+                                                                         name_of_hf=fund_name)
             list_previous.extend(shares_list_previous)
+            options_list_previous_full.extend(options_list_previous)
             fund_dict_scraped_current[fund_name] = [fund_link, max_form_date, shares_list_current,shares_list_current]
             fund_dict_scraped_previous[fund_name] = [fund_link, max_form_date, shares_list_current,shares_list_previous]
+            #print('options_list_current_full: ',options_list_current_full, flush=True)
         except Exception as e:
             print('We got an error here!:', e, flush=True)
             pass
@@ -105,18 +120,32 @@ def pandas_analysis(fund_dict):
                      dff['Shares_x']) * 100
 
     json_df = dff.round(2).to_json(orient='split')
+    print('json_df: ', dff.head(), flush=True)
     with open(config.scrapped_json_fn_no_ticker, 'w') as f:
+        print('saving to: ', config.scrapped_json_fn_no_ticker)
         json.dump(json_df, f)
 
     json_df_byfund = pd.DataFrame(fund_dict_scraped_current).to_json(orient='split')
     with open(config.scrapped_json_fn_hedgefund, 'w') as f:
         json.dump(json_df_byfund, f)
-
+    
+    df_options = pd.DataFrame(options_list_current_full)
+    json_df_options = df_options.to_json(orient='split')
+    print('json_df_options: ',df_options.head(), flush=True)
+    with open(config.scrapped_json_fn_options, 'w') as f:
+        print('saving to: ', config.scrapped_json_fn_options)
+        json.dump(json_df_options, f)
+        
     try: #Copy over files to static folder for downloading
         to_static_fn_byHF = os.path.join(os.getcwd(),
             'static',os.path.basename(config.scrapped_json_fn_hedgefund))
         print('Copying File to: ',to_static_fn_byHF, flush=True)
         shutil.copyfile(config.scrapped_json_fn_hedgefund, to_static_fn_byHF)
+        
+        to_static_fn_options = os.path.join(os.getcwd(),
+            'static',os.path.basename(config.scrapped_json_fn_options))
+        print('Copying File to: ',to_static_fn_options, flush=True)
+        shutil.copyfile(config.scrapped_json_fn_options, to_static_fn_options)
     except Exception as e:
         print('Error in file Copy: ', e, flush=True)
     #print(df_byfund.tail(), flush=True)
