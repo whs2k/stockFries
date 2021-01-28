@@ -83,7 +83,7 @@ def index_shorts():
     df_puts_only_by_stock = df_puts_only.groupby(['CUSIP','Company','Option_Type'],as_index=False).agg(
         {'Shares': 'sum', 'Value': 'sum', 'HF_Name': 'unique'}).sort_values('Value',ascending=False)
     puts_only_by_stock = df_puts_only_by_stock[['Company', 'Option_Type','Shares','Value','HF_Name']
-                     ].dropna().head(n=20).values.tolist()
+                     ].dropna().head(n=75).values.tolist()
     #except Exception as e:
       #print('Error Pulling outt Options by Stock', flush=True)
       #print(e, flush=True)
