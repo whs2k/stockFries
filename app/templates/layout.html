@@ -67,7 +67,7 @@
           
 
           <ul class="nav navbar-nav navbar-right">
-            <li style="text-align:right; margin: 0px 0"><a href="/blog">Blog</a> | <a href="/about">About</a></li>
+            <li style="text-align:right; margin: 0px 0"><a href="/options">Shorts</a> | <a href="/blog">Blog</a> | <a href="/about">About</a></li>
             <li><small><small>{{ most_recent_filing_date }}: <a href="{{ most_recent_filing_url }}"> {{ most_recent_filing_firm }}</a> </small></small></li>
         		
           </ul>
@@ -113,10 +113,12 @@
           
           <div class="d-none d-md-block">
             <a href="{{url_for('static', filename='json_df.txt')}}" download><span style="float:left;" class="hidden-phone">
-            <button class="btn"><i class="fa fa-download"></i> Data by Stocks</button></span></a>
+            <button class="btn btn-sm"><i class="fa fa-download"></i> Data by Stocks</button></span></a>
 
             <a href="{{url_for('static', filename='json_df_dataByHedgeFund.txt')}}" download><span style="float:left;" class="hidden-phone">
-            <button class="btn"><i class="fa fa-download"></i> Data by Hedge Funds</button></span></a>
+            <button class="btn btn-sm"><i class="fa fa-download"></i> Data by Hedge Funds</button></span></a>
+            <a href="{{url_for('static', filename='json_df_options.txt')}}" download><span style="float:left;" class="hidden-phone">
+            <button class="btn btn-sm"><i class="fa fa-download"></i> Data by Options</button></span></a>
           </div>
         
 

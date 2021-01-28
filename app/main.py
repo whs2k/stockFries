@@ -70,6 +70,30 @@ def index_byHedgeFund():
                            most_recent_filing_firm=most_recent_filing_fund,
                            most_recent_filing_date=most_recent_filing_date)
 
+@app.route("/shorts", methods=['GET', 'POST'])
+def index_shorts():
+    """Lists Options"""
+    #try:
+    with open(config.scrapped_json_fn_options, 'r') as f:
+        hedge_fund_json_dg = json.load(f)
+    df_recent_options = pd.read_json(hedge_fund_json_dg, orient='split')
+    df_puts_only = df_recent_options.drop_duplicates(subset=['CUSIP','HF_Name'], keep=False)
+    df_puts_only = df_puts_only[(df_puts_only['Option_Type']=='Put') & (df_puts_only['HF_Name']!='CAPITAL FUND MANAGEMENT')]
+    #df_puts_only.sort_values('Company').reset_index().tail(100)
+    df_puts_only_by_stock = df_puts_only.groupby(['CUSIP','Company','Option_Type'],as_index=False).agg(
+        {'Shares': 'sum', 'Value': 'sum', 'HF_Name': 'unique'}).sort_values('Value',ascending=False)
+    puts_only_by_stock = df_puts_only_by_stock[['Company', 'Option_Type','Shares','Value','HF_Name']
+                     ].dropna().head(n=20).values.tolist()
+    #except Exception as e:
+      #print('Error Pulling outt Options by Stock', flush=True)
+      #print(e, flush=True)
+      #pass
+    return render_template('index_options_byStock.html',
+                          put_options_by_stock=puts_only_by_stock,
+                           most_recent_filing_url=most_recent_filing_url,
+                           most_recent_filing_firm=most_recent_filing_fund,
+                           most_recent_filing_date=most_recent_filing_date)
+
 @app.route("/blog")
 def blog():
     return render_template('blog.html',

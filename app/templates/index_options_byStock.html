@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="row mx-auto">
+<div class="col-md-8 mx-auto">
+<!--<div class="card">-->
+<!--<div class="card-body">-->
+<br>
+      <h3 class="card-title text-center">What are the Hedge Funds Shorting?
+</h3>
+    <p class="card-text text-center">Inspired by the great work by investors from <a href = "https://www.reddit.com/r/wallstreetbets/">r/WallStreetBets</a> we're publishing all shorts from our list of Hedge Funds (based on their most recent filings). Data is calculated by (1) starting with the "Data by Options" from the footer, (2) removing stocks where there is a "Put" and "Call" position from a fund (i.e. those that are using options actually for hedging), and (3) grouping by "Company" and sorting by "Value."
+    <!-- Moved to Footer <a href="{{url_for('static', filename='json_df_dataByHedgeFund.txt')}}" download>
+          <button class="btn"><i class="fa fa-download"></i> Download Data</button>
+        </a> -->
+    </p>
+  </div>
+<!--</div>-->
+<!--</div>-->
+</div>
+<br>
+<br>
+
+<div class="row mx-auto">
+<div class="mx-auto">
+<div class="card mx-auto">
+  <div class="card-body">
+    <h5 class="card-title">Ownership by Fund</h5>
+<table class="table table-hover table-condensed w-auto table-striped">
+   <thead>
+   <tr>
+       <th>Company </th>
+       <th>Option_Type</th>
+       <th>Shares</th>
+       <th>Value</th>
+       <th>HF_Name</th>
+   </tr>
+   </thead>
+    <tbody>
+    {% for i in put_options_by_stock %}
+    <!--options_by_stock example: ['Company', 'Option_Type','Shares','Value','HF_Name'] -->
+    <tr>
+
+        <td>{{ i[0] }}</td>
+        <td style="word-wrap: break-word">{{ i[1] }}</td>
+        <td style="word-wrap: break-word">{{ i[2] }}</td>
+        <td style="word-wrap: break-word">{{ i[3] }}</td>
+        <td style="word-wrap: break-word">{{ i[4] }}</td>
+   </tr>
+{% endfor %}
+    </tbody>
+
+</table>
+  </div>
+</div>
+</div>
+</div>
+<br><br><br>
+{% endblock %}
+
