@@ -119,10 +119,11 @@ def pandas_analysis(fund_dict):
     dff['Change'] = ((dff['Shares_x'] - dff['Shares_y']) /
                      dff['Shares_x']) * 100
 
-    json_df = dff.round(2).to_json(orient='split')
-    print('json_df: ', dff.head(), flush=True)
+    json_df = dff.round(2).reset_index().to_json(orient='split')
+    print('json_df: ', dff.head(), flush=True) #previoulsy dffxfno_.head()
     with open(config.scrapped_json_fn_no_ticker, 'w') as f:
         print('saving to: ', config.scrapped_json_fn_no_ticker)
+        print()
         json.dump(json_df, f)
 
     json_df_byfund = pd.DataFrame(fund_dict_scraped_current).to_json(orient='split')
@@ -171,11 +172,12 @@ def get_tickers_from_cusips(list_of_cusips_):
             response_ticker = respon_json[0]['data'][0]['ticker']
             list_of_tickers.append(response_ticker)
             #print('Sucessful response_ticker: ',response_ticker,flush=True)
-        except Exception:
+        except Exception as exc:
             list_of_tickers.append(None)
-            print('Error in get_tickers_from_cusips: ',response_ticker, flush=True)
-            print('JSON_Response: ', respon_json)
+            print('Error in get_tickers_from_cusips; CUSIP:  ',cusip, flush=True)
+            print('JSON_Response: ', respon_json, flush=True)
             print(traceback.format_exc(), flush=True)
+        #print('list_of_tickers: ', list_of_tickers, flush=True)
     return list_of_tickers
 
 def generate_yahoo_link(ticker_):
@@ -190,6 +192,7 @@ def generate_and_save_tiker_yahoo_json(input_fn_, export_fn_):
     with open(input_fn_, 'r') as f:
         json_df = json.load(f)
     df_ = pd.read_json(json_df, orient='split')#.rename_axis('cusip').reset_index()#
+    print('loaded in generate_and_save_tiker_yahoo_json: ', df_.tail())
     list_of_cusips = df_.cusip.tolist()
     df_['ticker'] = get_tickers_from_cusips(list_of_cusips)
     df_['URL_Yahoo'] = df_.ticker.apply(generate_yahoo_link)
@@ -216,4 +219,4 @@ def generate_and_save_tiker_yahoo_json(input_fn_, export_fn_):
 
 if __name__ == "__main__":
     pandas_analysis(config.fund_dict)
-    generate_and_save_tiker_yahoo_json(config.scrapped_json_fn_no_ticker, config.scrapped_json_fn)
+    generate_and_save_tiker_yahoo_json(config.scrapped_json_fn, config.scrapped_json_fn)
