@@ -19,7 +19,14 @@ df_recent_filing = pd.read_json(hedge_fund_json_dg, orient='split').T.rename(col
 df_recent_filing_head = df_recent_filing [df_recent_filing.recent_filing_date == df_recent_filing.recent_filing_date.max()].head(1)
 most_recent_filing_date = df_recent_filing_head.recent_filing_date.tolist()[0]
 most_recent_filing_url = df_recent_filing_head.link.tolist()[0]
-most_recent_filing_fund = df_recent_filing_head.index.tolist()[0]
+most_recent_filing_word_list = df_recent_filing_head.index.tolist()[0].split(' ')
+max_fund_name_characters = 15
+most_recent_filing_fund = ''
+for word in most_recent_filing_word_list:
+	if len(most_recent_filing_fund) < max_fund_name_characters:
+		most_recent_filing_fund = most_recent_filing_fund + ' ' + word
+	else:
+		break
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
