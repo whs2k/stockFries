@@ -20,7 +20,7 @@ df_recent_filing_head = df_recent_filing [df_recent_filing.recent_filing_date ==
 most_recent_filing_date = df_recent_filing_head.recent_filing_date.tolist()[0]
 most_recent_filing_url = df_recent_filing_head.link.tolist()[0]
 most_recent_filing_word_list = df_recent_filing_head.index.tolist()[0].split(' ')
-max_fund_name_characters = 15
+max_fund_name_characters = 10
 most_recent_filing_fund = ''
 for word in most_recent_filing_word_list:
 	if len(most_recent_filing_fund) < max_fund_name_characters:
