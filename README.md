@@ -21,6 +21,9 @@ sudo docker-compose up #Spinup docker instance (run as is to make sure there are
 5. To test scraping:
 cd /home/ubuntu/stockFries/app/ && python scraper.py
 
+6. Add SSL
+https://certbot.eff.org/lets-encrypt/ubuntubionic-nginx
+
 Appedix
 Old Cron Command: /usr/bin/python /home/ubuntu/stockFries/app/scraper.py > /var/log/cron.log 2>&1  
 cd /home/ubuntu/stockFries/app && /usr/bin/python /home/ubuntu/stockFries/app/scraper.py > /home/ubuntu/stockFries/app/cron.log 
