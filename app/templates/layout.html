@@ -46,7 +46,14 @@
 
 <!--    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">-->
     <link rel="stylesheet" href="https://getbootstrap.com/docs/4.0/examples/sticky-footer/sticky-footer.css">
+
+      {% if request.cookies.get("theme") %}
+  <link rel="stylesheet" href="/static/{{ request.cookies.get("theme") }}.css">
+  {% else %}
+  <link rel="stylesheet" href="/static/light.css">
+  {% endif %}
     <meta name="viewport" content = "width=device-width, initial-scale=1.0">
+
 
   </head>
 
@@ -68,6 +75,8 @@
 
           <ul class="nav navbar-nav navbar-right">
             <li style="text-align:right; margin: 0px 0"><a href="/shorts">Shorts</a> | <a href="/blog">Blog</a> | <a href="/about">About</a></li>
+    <li><a href="/set/light">Light (Default)</a></li>
+    <li><a href="/set/dark">Dark</a></li>
             <li><small><small>{{ most_recent_filing_date }}: <a href="{{ most_recent_filing_url }}"> {{ most_recent_filing_firm }}</a> </small></small></li>
         		
           </ul>

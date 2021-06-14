@@ -1,7 +1,7 @@
 # built-in
 import json
 # external
-from flask import Flask, render_template
+from flask import Flask, render_template, make_response, redirect, url_for
 from flask_flatpages import FlatPages
 import pandas as pd
 # internal
@@ -16,6 +16,12 @@ app.config.from_object(__name__)
 
 pages = FlatPages(app)
 
+@app.route("/set")
+@app.route("/set/<theme>")
+def set_theme(theme="light"):
+  res = make_response(redirect(url_for("index")))
+  res.set_cookie("theme", theme)
+  return res
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
