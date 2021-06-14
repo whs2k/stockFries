@@ -1,5 +1,15 @@
 import os
 
+
+# Email - requires 'allow less secure apps' in gmail sender settings
+
+SMTP_PORT = 465  # For SSL
+SMTP_SERVER = "smtp.gmail.com"
+SENDER_EMAIL = "stockfries@gmail.com"
+RECEIVER_EMAIL_DEFAULT = "wsolomon@mica.edu"
+RECEIVER_EMAIL_ERROR = "wsolomon@mica.edu"  # For error notifications
+EMAIL_PASSWORD = 'replace-me'
+
 blog_1_url = "http://www.stockfries.com/blog/1_gambling"
 blog_2_url = "http://www.stockfries.com/blog/2_basics"
 

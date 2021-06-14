@@ -9,7 +9,7 @@ sudo chmod +x /usr/local/bin/docker-compose
 git clone https://github.com/whs2k/stockFries.git && cd stockFries
 sudo apt -y install python-pip
 yes | pip install -r requirements.txt
-(crontab -l 2>/dev/null; echo "* * 7 * * cd /home/ubuntu/stockFries/app && /usr/bin/python /home/ubuntu/stockFries/app/scraper.py > /home/ubuntu/stockFries/app/cron.log 2>&1") | crontab -#https://stackoverflow.com/questions/4880290/how-do-i-create-a-crontab-through-a-script
+(crontab -l 2>/dev/null; echo "0 0 * * 0 cd /home/ubuntu/stockFries/app && /usr/bin/python /home/ubuntu/stockFries/app/scraper.py > /home/ubuntu/stockFries/app/cron.log 2>&1") | crontab -#https://stackoverflow.com/questions/4880290/how-do-i-create-a-crontab-through-a-script
 sudo docker-compose up #Spinup docker instance (run as is to make sure there are no errors thrown. In general you can append the -d flag to run silently in the background) ```
 
 3. Check Docker Containers Running
