@@ -4,3 +4,4 @@ COPY requirements.txt /tmp
 RUN pip install -U pip
 RUN pip install -r /tmp/requirements.txt
 COPY ./app /app
+#COPY ./app/custom.conf //etc/nginx/conf.d/custom.conf
