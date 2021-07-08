@@ -1,4 +1,4 @@
-title: Investing Basics Part 2/3 - Portfolio Metrics
+title: Investing Basics Part 2/2 - Portfolio Metrics
 date: 2020-11-01
 category: general
 

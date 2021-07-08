@@ -1,4 +1,4 @@
-title: Investing Basics Part 1/3 - Individual Security Metrics
+title: Investing Basics Part 1/2 - Individual Security Metrics
 date: 2020-10-05
 category: general
 
