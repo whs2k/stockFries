@@ -8,39 +8,59 @@
 
 
 <url>
-  <loc>http://stockfries.com/</loc>
-  <lastmod>2021-01-28T09:56:26+00:00</lastmod>
+  <loc>http://www.stockfries.com/</loc>
+  <lastmod>2021-07-15T01:26:21+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
-  <loc>http://stockfries.com/shorts</loc>
-  <lastmod>2021-01-28T09:56:26+00:00</lastmod>
+  <loc>http://www.stockfries.com/shorts</loc>
+  <lastmod>2021-07-15T01:26:21+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://stockfries.com/blog</loc>
-  <lastmod>2021-01-28T09:56:26+00:00</lastmod>
+  <loc>http://www.stockfries.com/blog</loc>
+  <lastmod>2021-07-15T01:26:21+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://stockfries.com/about</loc>
-  <lastmod>2021-01-28T09:56:26+00:00</lastmod>
+  <loc>http://www.stockfries.com/about</loc>
+  <lastmod>2021-07-15T01:26:21+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://stockfries.com/static/json_df.txt</loc>
-  <lastmod>2020-12-22T23:39:47+00:00</lastmod>
+  <loc>http://www.stockfries.com/static/json_df.txt</loc>
+  <lastmod>2021-06-27T00:13:34+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://stockfries.com/static/json_df_dataByHedgeFund.txt</loc>
-  <lastmod>2020-12-22T23:39:47+00:00</lastmod>
+  <loc>http://www.stockfries.com/static/json_df_dataByHedgeFund.txt</loc>
+  <lastmod>2021-06-27T00:01:17+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://stockfries.com/static/json_df_options.txt</loc>
-  <lastmod>2021-01-28T09:48:25+00:00</lastmod>
+  <loc>http://www.stockfries.com/static/json_df_options.txt</loc>
+  <lastmod>2021-06-27T00:01:17+00:00</lastmod>
   <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://www.stockfries.com/1_gambling/</loc>
+  <lastmod>2021-07-15T01:26:21+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://www.stockfries.com/2_basics/</loc>
+  <lastmod>2021-07-15T01:26:21+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://www.stockfries.com/4_strats/</loc>
+  <lastmod>2021-07-15T01:26:21+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://www.stockfries.com/3_covar/</loc>
+  <lastmod>2021-07-15T01:26:21+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 
 
